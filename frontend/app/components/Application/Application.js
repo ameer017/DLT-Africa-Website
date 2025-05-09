@@ -113,11 +113,13 @@ const Application = () => {
       ? [
           { id: 1, tag: "Frontend Development", fee: 320000 },
           { id: 2, tag: "Product UI/UX Design", fee: 170000 },
+          { id: 3, tag: "Graphics Design", fee: 150000 },
         ]
       : [
           { id: 1, tag: "Frontend Development" },
           { id: 2, tag: "Full-Stack Development" },
           { id: 3, tag: "Product UI/UX Design" },
+          { id: 4, tag: "Graphics Design" },
         ];
 
   const [checkboxesChecked, setCheckboxesChecked] = useState({
@@ -127,13 +129,12 @@ const Application = () => {
   });
 
   const [formValidMessage, setFormValidMessage] = useState();
-  const [formCompleted, setFormCompleted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormValidMessage("");
     const { name, value } = e.target;
-    // console.log(e.target.value);
+    console.log(e.target.value);
     if (name === "classType" && value === "Online") {
       setFormData({
         ...formData,
@@ -163,8 +164,6 @@ const Application = () => {
       emailAddress,
       codeExperience,
       stateOfResidence,
-      referralOption,
-      referralName,
     } = formData;
 
     if (
@@ -182,7 +181,7 @@ const Application = () => {
       !stateOfResidence
     ) {
       setFormValidMessage(
-        "Oops! required field are not filled. Go back and fill them"
+        "Oops! required field are not filled. Please, go back and fill them"
       );
       return;
     }
@@ -194,10 +193,9 @@ const Application = () => {
         formData
       )
       .then(function (response) {
-        console.log(response.data);
-        console.log(formData);
+        // console.log(response.data);
+        // console.log(formData);
         setIsSubmitting(false);
-        setFormCompleted(true);
         router.push("/congrats");
       })
       .catch(function (error) {
@@ -231,7 +229,9 @@ const Application = () => {
   useEffect(() => {
     const checkApplicationDeadline = () => {
       const currentDate = new Date();
-      const deadlineDate = new Date("2024-12-31");
+      // console.log(currentDate)
+      const deadlineDate = new Date("2025-05-30");
+      // console.log(deadlineDate)
       if (currentDate >= deadlineDate) {
         setIsApplicationClosed(true);
       }
@@ -287,7 +287,7 @@ const Application = () => {
                       {" "}
                       <FaCheck color="#FEA650" />
                     </div>{" "}
-                    <p>300+ alumni have joined our community, so can you</p>
+                    <p>350+ alumni have joined our community, so can you</p>
                   </div>
                 </div>
               </div>

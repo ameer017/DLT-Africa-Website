@@ -12,14 +12,10 @@ const hashToken = (token) => {
 
 const sendEmail = async (mailOptions) => {
   const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: 587,
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      rejectUnauthorized: false,
     },
   });
 
@@ -39,6 +35,9 @@ const calculateTuitionFee = (courseSelected, classType) => {
       case "Frontend Development":
         tuitionFee = 0.5 * 420000;
         break;
+      case "Graphics Design":
+        tuitionFee = 0.8 * 150000;
+        break;
       case "Product UI/UX Design":
         tuitionFee = 0.5 * 170000;
         break;
@@ -52,6 +51,9 @@ const calculateTuitionFee = (courseSelected, classType) => {
     switch (courseSelected) {
       case "Frontend Development":
         tuitionFee = 0.5 * 370000;
+        break;
+      case "Graphics Design":
+        tuitionFee = 0.8 * 150000;
         break;
       case "Product UI/UX Design":
         tuitionFee = 0.5 * 170000;
